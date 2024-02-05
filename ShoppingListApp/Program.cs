@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using ShoppingListApp.Contracts;
 using ShoppingListApp.Data;
+using ShoppingListApp.Services;
 
 namespace ShoppingListApp
 {
@@ -11,6 +14,7 @@ namespace ShoppingListApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             //Add EF Core context
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

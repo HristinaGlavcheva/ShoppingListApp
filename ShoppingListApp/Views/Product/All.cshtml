@@ -1,0 +1,32 @@
+﻿@using ShoppingListApp.ViewModels
+@model List<ProductViewModel>;
+
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div>
+    <a asp-controller="Product" asp-action="Add" class="btn btn-primary">Add Product</a>
+</div>
+
+@if (Model.Count == 0)
+{
+    <p class="text-center">No products yet!</p>
+}
+else
+{
+    @foreach (var product in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">@product.Name</p>
+                <a asp-controller="Product" asp-action="Edit" asp-route-id=@product.Id class="btn btn-worning">Edit</a>
+                <form asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </form>
+            </div>
+        </div>
+    }
+}
